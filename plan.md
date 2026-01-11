@@ -41,8 +41,7 @@
 
 ---
 
-## Step 1 — 內容模型：Markdown 文章 + 年份分組
-
+## Step 1 —據 plan.md 的內容進行實作，每
 ### 目標
 用 Markdown 寫文章，依 frontmatter `date` 分組到年份，並在：
 - Home 顯示「年份索引」
@@ -210,9 +209,202 @@
 
 ---
 
+---
+
+## Step 7 — 對齊 Jake 風格：深色模式 + 移除導航列
+
+> **重要**: 從 Step 7 開始，要將網站風格對齊 Jake 的部落格 (https://jakegines.in/)  
+> 參考 `difference.md` 的差異分析，逐步調整設計。
+
+### 目標
+- 從淺色模式改為深色模式（黑色背景 + 淺色文字）
+- 移除頂部固定導航列
+- 改用頁面內連結導航（如 `← home` 在年份頁）
+
+### 視覺規格
+- 背景色：`#000000` 或接近黑色（如 `#0a0a0a`）
+- 主文字色：淺灰或白色（如 `#e0e0e0`, `#ffffff`）
+- 連結色：柔和的淺色（如 `#a0a0a0`），hover 時變亮
+- 無導航列，頁面更沈浸式
+
+### 驗收標準
+- Home、About、Blog 頁面全部採用深色背景
+- 無頂部導航列
+- 年份頁面（如 `/blog/2025`）左上角顯示 `← home` 連結
+- `pnpm build` 成功
+- 整體視覺接近 Jake 風格的深色極簡
+
+### 實作提示
+- 更新 `src/styles/global.css` 的 `:root` CSS 變數
+- 移除 `Layout.astro` 的 `<nav>` 區塊
+- 在 `src/pages/blog/[year]/index.astro` 和 `[slug].astro` 加入返回連結
+
+---
+
+## Step 8 — 首頁改造：置中 + 水平年份 + links 區塊
+
+### 目標
+重新設計首頁，對齊 Jake 的排版：
+1. 所有內容置中對齊
+2. 簡化標題為 `~ username` 風格
+3. 顯示 email 或聯絡方式
+4. **blogs 區塊**：年份水平排列，只顯示年份徽章（不展開文章列表）
+5. **links 區塊**：顯示 `about →` 等內部連結
+
+### 首頁結構（由上至下）
+```
+    ~ [username]
+    email@example.com
+
+    blogs
+    [年份徽章 2025] [年份徽章 2024] [年份徽章 2023] ...
+
+    links
+    about → favorites → research →
+```
+
+### 驗收標準
+- 首頁內容完全置中
+- blogs 只顯示年份，不展開文章列表
+- 點擊年份進入 `/blog/[year]` 頁面
+- 有 links 區塊顯示內部頁面連結
+- `pnpm build` 成功
+
+### 實作提示
+- 大幅修改 `src/pages/index.astro`
+- 調整 CSS 為置中排版（flexbox 或 grid）
+- 移除首頁的文章列表展開邏輯
+- 新增 links 區塊（可用 list 或簡單 div）
+
+---
+
+## Step 9 — 年份徽章改為希臘字母（或保留中文並簡化）
+
+### 目標
+對齊 Jake 的年份表示方式：
+- 2025 → `σ` (sigma)
+- 2024 → `τ` (tau)
+- 2023 → `λ` (lambda)
+- 2022 → `Φ` (phi)
+
+**或**保留中文數字，但簡化顯示（只在首頁用大字，年份頁用小字 + 希臘符號）
+
+### 希臘字母映射
+```typescript
+2025: 'σ'
+2024: 'τ'
+2023: 'λ'
+2022: 'Φ'
+2021: 'ψ'
+2020: 'ω'
+```
+
+### 驗收標準
+- 首頁 blogs 顯示希臘字母 + 年份數字（如 `σ 2025`）
+- 年份頁標題顯示 `# 2025 σ`
+- 中文徽章可選保留或移除（視設計決定）
+- `pnpm build` 成功
+
+### 實作提示
+- 更新 `src/utils/dateHelpers.ts` 新增 `getGreekLetter(year: number): string`
+- 更新 `YearBadge.astro` 或建立新的 `GreekYearBadge.astro`
+- 調整首頁與年份頁的顯示邏輯
+
+---
+
+## Step 10 — 全站等寬字體 + 極簡樣式調整
+
+### 目標
+- 全站使用等寬字體（monospace），營造程式風格
+- 移除多餘的視覺裝飾（邊框、陰影、過大間距）
+- 保持極致極簡
+
+### 字體設定
+```css
+body {
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+}
+```
+
+### 驗收標準
+- 所有頁面使用等寬字體
+- 視覺上更接近 Jake 的極簡風格
+- 無多餘裝飾元素
+- `pnpm build` 成功
+
+### 實作提示
+- 更新 `src/styles/global.css`
+- 移除 Terminal 元件的特殊字體設定（統一為 monospace）
+- 簡化 padding、margin 設定
+
+---
+
+## Step 11 — 年份頁面細節優化
+
+### 目標
+完善年份頁面的細節：
+1. 左上角 `← home` 返回連結
+2. 標題格式：`# 2025 σ`
+3. 文章列表只顯示標題連結（移除日期顯示）
+4. 頁尾加入 `Corrections, comments, and suggestions welcome.`
+
+### 驗收標準
+- 年份頁面有明確的返回導航
+- 標題包含希臘字母
+- 文章列表簡潔（純連結）
+- 有友善的頁尾訊息
+- `pnpm build` 成功
+
+### 實作提示
+- 更新 `src/pages/blog/[year]/index.astro`
+- 更新 `src/pages/blog/[year]/[slug].astro`
+- 可考慮建立共用的 footer component
+
+---
+
+## Step 12 — About 頁面調整（可選）
+
+### 目標
+確保 About 頁面風格與整站一致：
+- 深色背景
+- 等寬字體
+- 左上角 `← home` 返回連結
+- Terminal UI 維持，但配色調整為與全站一致
+
+### 驗收標準
+- About 頁面視覺與其他頁面一致
+- Terminal 組件配色調整
+- `pnpm build` 成功
+
+### 實作提示
+- 調整 `Terminal.astro` 的配色變數
+- 確保使用全站統一字體
+- 加入返回連結
+
+---
+
+## Step 13 — 最終優化與驗收
+
+### 目標
+- 全站細節打磨
+- 確保所有頁面風格統一
+- 響應式調整（如需要）
+- 最終 build 與部署
+
+### 驗收標準
+- 整體視覺風格接近 Jake 部落格
+- 所有頁面深色模式、等寬字體、置中排版
+- 導航流暢（頁面內連結）
+- `pnpm build` 成功
+- 部署後網站可正常瀏覽
+
+---
+
 ## 執行紀律（務必遵守）
-- 每個 Step 完成後，回報：
+- **從 Step 7 開始實作**，每個 Step 完成後回報：
   1) 變更檔案清單
   2) 主要改動摘要
   3) 驗收指令與結果（dev/build/preview）
+  4) 與 Jake 風格的對比（是否更接近）
+- 參考 `difference.md` 檔案了解所有設計差異
 - 若遇到錯誤：先最小化修復讓該 Step 的驗收標準通過，不要同時做下一步。
