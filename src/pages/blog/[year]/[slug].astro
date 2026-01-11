@@ -1,0 +1,18 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  return [
+    { params: { year: '2025', slug: 'first-post' } },
+    { params: { year: '2024', slug: 'second-post' } },
+  ];
+}
+
+const { year, slug } = Astro.params;
+---
+
+<Layout title={`Blog - ${year} - ${slug}`}>
+  <h1>{slug}</h1>
+  <p>Year: {year}</p>
+  <p>This is a blog post placeholder.</p>
+</Layout>
