@@ -35,7 +35,7 @@ const yearPosts = allPosts
 
 <Layout title={`Blog - ${year}`}>
   <p><a href="/">← home</a></p>
-  <h1>Blog Posts - {year}</h1>
+  <h1>{year}</h1>
   
   {yearPosts.length > 0 ? (
     <ul>
@@ -48,4 +48,8 @@ const yearPosts = allPosts
   ) : (
     <p>No posts found for {year}.</p>
   )}
+  
+  <p style={{ marginTop: '2rem', fontSize: '0.9rem', color: 'var(--muted)' }}>
+    Corrections, comments, and suggestions welcome.
+  </p>
 </Layout>
