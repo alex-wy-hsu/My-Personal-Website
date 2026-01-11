@@ -1,0 +1,71 @@
+---
+interface TerminalLine {
+  type: 'prompt' | 'value' | 'blank';
+  prompt?: string;
+  value?: string | string[];
+}
+
+interface Props {
+  data: TerminalLine[];
+}
+
+const { data } = Astro.props;
+
+function renderValue(value: string | string[] | undefined): string {
+  if (!value) return '';
+  if (Array.isArray(value)) {
+    return `[${value.map(v => `"${v}"`).join(', ')}]`;
+  }
+  if (value.startsWith('http') || value.endsWith('.pdf')) {
+    return `"${value}"`;
+  }
+  return `"${value}"`;
+}
+---
+
+<div class="terminal">
+  {data.map(line => (
+    line.type === 'blank' ? (
+      <div class="terminal-blank"></div>
+    ) : (
+      <div class="terminal-line">
+        {line.prompt && <span class="terminal-prompt">&gt; {line.prompt}</span>}
+        {line.value && (
+          <div class="terminal-value" set:html={renderValue(line.value)} />
+        )}
+      </div>
+    )
+  ))}
+</div>
+
+<style>
+  .terminal {
+    background-color: #2a2a3e;
+    color: #e8e8e8;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    overflow-x: auto;
+  }
+
+  .terminal-line {
+    margin: 0.5rem 0;
+  }
+
+  .terminal-blank {
+    height: 0.8rem;
+  }
+
+  .terminal-prompt {
+    color: #9d86e9;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .terminal-value {
+    color: #87d6a0;
+    padding-left: 1rem;
+  }
+</style>
