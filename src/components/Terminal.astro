@@ -1,0 +1,62 @@
+---
+type TerminalBlock =
+	| { type: 'string'; prompt: string; value: string }
+	| { type: 'array'; prompt: string; value: string[] }
+	| { type: 'link'; prompt: string; value: string; href: string };
+
+const { blocks, accent = 'var(--accent-2025)' }: { blocks: TerminalBlock[]; accent?: string } = Astro.props;
+---
+
+<div class="terminal" style={`--terminal-accent: ${accent};`}>
+	{blocks.map((block) => (
+		<div class="terminal-row">
+			<div class="terminal-prompt">&gt; {block.prompt}</div>
+			{block.type === 'string' && <div class="terminal-value">"{block.value}"</div>}
+			{block.type === 'array' && <div class="terminal-value">[{block.value.map((item, index) => (
+				<span>
+					"{item}"{index < block.value.length - 1 ? ', ' : ''}
+				</span>
+			))}]</div>}
+			{block.type === 'link' && (
+				<div class="terminal-value">
+					<a href={block.href}>"{block.value}"</a>
+				</div>
+			)}
+		</div>
+	))}
+</div>
+
+<style>
+	.terminal {
+		background: #161a23;
+		border: 1px solid var(--border);
+		border-radius: 12px;
+		padding: 1rem 1.1rem;
+		display: grid;
+		gap: 0.75rem;
+		color: var(--text);
+		font-family: var(--font-mono);
+	}
+
+	.terminal-row {
+		display: grid;
+		gap: 0.25rem;
+	}
+
+	.terminal-prompt {
+		color: var(--terminal-accent);
+	}
+
+	.terminal-value {
+		color: #e9ebf2;
+	}
+
+	.terminal-value a {
+		color: var(--terminal-accent);
+		text-decoration: none;
+	}
+
+	.terminal-value a:hover {
+		text-decoration: underline;
+	}
+</style>
