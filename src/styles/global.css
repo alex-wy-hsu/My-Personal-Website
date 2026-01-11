@@ -1,0 +1,103 @@
+/* Global CSS Variables and Styling */
+
+:root {
+  /* Neutral colors */
+  --bg: #fafafa;
+  --text: #333333;
+  --muted: #666666;
+  --border: #e5e5e5;
+  
+  /* Year accent colors (low saturation) */
+  --accent-2025: #7a6b7d;  /* Muted purple */
+  --accent-2024: #6b7a7d;  /* Muted blue-gray */
+  --accent-2023: #7a7d6b;  /* Muted olive */
+  --accent-2022: #7d7a6b;  /* Muted brown */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+nav {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--text);
+}
+
+a {
+  color: var(--text);
+  transition: opacity 0.2s;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 0.5rem 0;
+}
+
+article {
+  line-height: 1.8;
+}
+
+article h1 {
+  margin-bottom: 0.5rem;
+}
+
+article time {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+article p {
+  margin: 1rem 0;
+}

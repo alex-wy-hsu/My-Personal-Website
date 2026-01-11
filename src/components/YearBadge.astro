@@ -1,5 +1,5 @@
 ---
-import { toChineseUpperYear } from '../utils/dateHelpers';
+import { toChineseUpperYear, getYearAccentVar } from '../utils/dateHelpers';
 
 interface Props {
   year: number;
@@ -7,10 +7,13 @@ interface Props {
 
 const { year } = Astro.props;
 const chineseYear = toChineseUpperYear(year);
+const accentColor = getYearAccentVar(year);
 ---
 
 <div class="year-badge">
-  <div class="year-badge-text">{chineseYear}</div>
+  <div class="year-badge-text" style={{ color: accentColor }}>
+    {chineseYear}
+  </div>
   <div class="year-badge-number">{year}</div>
 </div>
 
@@ -26,10 +29,11 @@ const chineseYear = toChineseUpperYear(year);
     font-family: "京華老宋體", "KingHwa_OldSong", "PMingLiU", "Songti TC", serif;
     line-height: 1.2;
     margin-bottom: 0.5rem;
+    transition: opacity 0.2s;
   }
 
   .year-badge-number {
     font-size: 0.9rem;
-    color: #666;
+    color: var(--muted);
   }
 </style>

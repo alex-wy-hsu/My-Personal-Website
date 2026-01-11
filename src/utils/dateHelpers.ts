@@ -22,3 +22,11 @@ export function toChineseUpperYear(year: number): string {
     .map(digit => digitMap[digit])
     .join('');
 }
+
+/**
+ * Get CSS variable name for year accent color
+ * e.g., 2025 -> "var(--accent-2025)"
+ */
+export function getYearAccentVar(year: number): string {
+  return `var(--accent-${year})`;
+}
