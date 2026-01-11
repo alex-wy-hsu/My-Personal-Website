@@ -55,6 +55,21 @@ Note: If you want actual PNG/WebP snapshots embedded here, I can generate them l
 - Tweak the `about.html` terminal content to match your exact text (edit `js/data.js`).
 - Add project entries to `js/data.js` and provide thumbnails under `assets/images/`.
 - Push the branch to remote (I can run `git push` if you want).
+
+### Embedded page snapshots
+
+Home snapshot:
+
+![Home snapshot](assets/images/snapshot-index.png)
+
+About snapshot:
+
+![About snapshot](assets/images/snapshot-about.png)
+
+Projects snapshot:
+
+![Projects snapshot](assets/images/snapshot-projects.png)
+
 # Personal Website
 
 A minimalist personal website inspired by Jake Gines and Justin Chi. Features a dark/space theme, monospace typography, and clean "hacker/academic" vibe.
