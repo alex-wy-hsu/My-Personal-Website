@@ -19,18 +19,28 @@ Edit `js/data.js` for your info and projects.
 
 ## Pages Snapshot
 
-Below are quick snapshots (textual + links) of the current pages on this branch. Image screenshots are not present in the repository; open the linked HTML files locally to view the live pages.
+Below are quick snapshots (textual + links) of the current pages on this branch. Each page's image snapshot is embedded directly under its description.
 
 - Home: [index.html](index.html)
   - Snapshot: large centered hero with name/title, short tagline, navigation links to About / Projects. Minimal, Jake-style spacing and monospace heading.
 
+  Home snapshot:
+
+  ![Home snapshot](assets/images/snapshot-index.png)
+
 - About: [about.html](about.html)
   - Snapshot: Jake-style page wrapper containing a Justin-inspired terminal block: mock macOS header dots, a prompt line (`> {name}`) with blinking cursor, command-like lines for location, contact, resume, interests, education, and skills.
+
+  About snapshot:
+
+  ![About snapshot](assets/images/snapshot-about.png)
 
 - Projects: [projects.html](projects.html)
   - Snapshot: Vertical list of project cards. Each card is a thin-outlined rectangle with a left image area (20% width) and a right content area (80% width) containing title, 2–5 line description, and rectangular tech tags below.
 
-Note: If you want actual PNG/WebP snapshots embedded here, I can generate them locally (if you run a browser or provide screenshots) or add them after you place images into `assets/images/`.
+  Projects snapshot:
+
+  ![Projects snapshot](assets/images/snapshot-projects.png)
 
 ## Branch Summary
 
@@ -51,40 +61,8 @@ Note: If you want actual PNG/WebP snapshots embedded here, I can generate them l
 
 ## Next steps you can ask me to do
 
-- Generate or embed actual page screenshots into `README.md` (requires providing screenshots or allowing me to run a headless browser). 
+- Regenerate screenshots at different viewport sizes or image formats.
 - Tweak the `about.html` terminal content to match your exact text (edit `js/data.js`).
 - Add project entries to `js/data.js` and provide thumbnails under `assets/images/`.
 - Push the branch to remote (I can run `git push` if you want).
 
-### Embedded page snapshots
-
-Home snapshot:
-
-![Home snapshot](assets/images/snapshot-index.png)
-
-About snapshot:
-
-![About snapshot](assets/images/snapshot-about.png)
-
-Projects snapshot:
-
-![Projects snapshot](assets/images/snapshot-projects.png)
-
-# Personal Website
-
-A minimalist personal website inspired by Jake Gines and Justin Chi. Features a dark/space theme, monospace typography, and clean "hacker/academic" vibe.
-
-## Structure
-- Home: Minimal hero, intro, navigation
-- About: Terminal UI, personal info
-- Projects: Project cards, tech tags
-
-## Tech
-- HTML5, CSS3, Vanilla JS
-- Static hosting (GitHub Pages, Netlify, Vercel)
-
-## Setup
-Open index.html in your browser or deploy to a static host.
-
-## Customization
-Edit js/data.js for your info and projects.
