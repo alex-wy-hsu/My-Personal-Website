@@ -1,0 +1,31 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { latestYear } from '../../../lib/posts';
+import { accentVar } from '../../../lib/year';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	const navYear = latestYear(posts);
+	return posts.map((post) => {
+		const year = post.data.date.getUTCFullYear();
+		const slug = post.slug.split('/').pop() ?? post.slug;
+		return {
+			params: { year: year.toString(), slug },
+			props: { post, navYear },
+		};
+	});
+}
+
+const { post, navYear } = Astro.props;
+const year = post.data.date.getUTCFullYear();
+const { Content } = await post.render();
+const accent = accentVar(year);
+---
+
+<Layout title={`${post.data.title} | ${year}`} navLatestYear={navYear}>
+	<h1 style={`color: ${accent};`}>{post.data.title}</h1>
+	<p class="post-list-meta">{post.data.date.toISOString().slice(0, 10)}</p>
+	{post.data.description && <p class="muted">{post.data.description}</p>}
+	<Content />
+</Layout>
