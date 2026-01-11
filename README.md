@@ -61,10 +61,5 @@ Below are quick snapshots (textual + links) of the current pages on this branch.
   - Updated `prompt.md` with the user's Chinese initial prompt and commit log (committed).
   - Scaffolded the site (HTML/CSS/JS) and committed the files; later removed the `Reference-Website-Snapshot` folder and amended the commit to exclude large snapshot images.
 
-## Next steps you can ask me to do
 
-- Regenerate screenshots at different viewport sizes or image formats.
-- Tweak the `about.html` terminal content to match your exact text (edit `js/data.js`).
-- Add project entries to `js/data.js` and provide thumbnails under `assets/images/`.
-- Push the branch to remote (I can run `git push` if you want).
 
