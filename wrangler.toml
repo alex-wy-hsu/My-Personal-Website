@@ -1,0 +1,5 @@
+name = "my-personal-website"
+type = "javascript"
+
+[env.production]
+route = "my-personal-website.pages.dev"
