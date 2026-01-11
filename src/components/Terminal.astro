@@ -1,0 +1,106 @@
+---
+interface Props {
+  data: Array<{
+    type: 'prompt' | 'string' | 'array' | 'blank' | 'link';
+    key?: string;
+    value?: string | string[] | { text: string; href: string };
+  }>;
+}
+
+const { data } = Astro.props;
+---
+
+<div class="terminal">
+  {data.map((item, idx) => {
+    if (item.type === 'blank') {
+      return <div key={idx} class="terminal-line">&nbsp;</div>;
+    }
+    
+    if (item.type === 'prompt') {
+      return (
+        <div key={idx} class="terminal-line">
+          <span class="prompt">&gt;</span>
+          <span class="key">{item.key}</span>
+        </div>
+      );
+    }
+    
+    if (item.type === 'string') {
+      return (
+        <div key={idx} class="terminal-line">
+          <span class="string">"{item.value}"</span>
+        </div>
+      );
+    }
+    
+    if (item.type === 'link') {
+      const link = item.value as { text: string; href: string };
+      return (
+        <div key={idx} class="terminal-line">
+          <span class="string">
+            "<a href={link.href} class="link">{link.text}</a>"
+          </span>
+        </div>
+      );
+    }
+    
+    if (item.type === 'array') {
+      const arr = item.value as string[];
+      return (
+        <div key={idx} class="terminal-line">
+          [
+          {arr.map((val, i) => (
+            <span key={i}>
+              <span class="string">"{val}"</span>
+              {i < arr.length - 1 && ', '}
+            </span>
+          ))}
+          ]
+        </div>
+      );
+    }
+  })}
+</div>
+
+<style>
+  .terminal {
+    background-color: #2a2a3e;
+    color: #e8e8e8;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    overflow-x: auto;
+    border: 1px solid #3a3a4e;
+  }
+
+  .terminal-line {
+    margin: 0.5rem 0;
+  }
+
+  .prompt {
+    color: #7a8a8d;
+    margin-right: 0.5rem;
+  }
+
+  .key {
+    color: #b8b8d0;
+    font-weight: 500;
+  }
+
+  .string {
+    color: #b8d0a8;
+  }
+
+  .link {
+    color: #7a9a7d;
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+    transition: color 0.2s;
+  }
+
+  .link:hover {
+    color: #8abf8e;
+  }
+</style>
