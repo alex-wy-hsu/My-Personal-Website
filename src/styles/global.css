@@ -1,0 +1,78 @@
+/* Global CSS Variables and Styling */
+
+:root {
+  /* Neutral colors - Dark mode */
+  --bg: #0a0a0a;
+  --text: #e0e0e0;
+  --muted: #a0a0a0;
+  --border: #2a2a2a;
+  
+  /* Year accent colors (low saturation, adapted for dark mode) */
+  --accent-2025: #8a9a9d;  /* Muted blue-gray */
+  --accent-2024: #8a8d9a;  /* Muted purple-gray */
+  --accent-2023: #9a9a8a;  /* Muted olive-gray */
+  --accent-2022: #9d9a8a;  /* Muted brown-gray */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--text);
+  transition: opacity 0.2s;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 0.5rem 0;
+}
+
+article {
+  line-height: 1.8;
+}
+
+article h1 {
+  margin-bottom: 0.5rem;
+}
+
+article time {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+article p {
+  margin: 1rem 0;
+}

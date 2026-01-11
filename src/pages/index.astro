@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import YearBadge from '../components/YearBadge.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+
+// Get unique years from posts
+const postsByYear = new Map<number, typeof allPosts>();
+allPosts.forEach(post => {
+  const year = parseInt(post.data.date.split('-')[0]);
+  if (!postsByYear.has(year)) {
+    postsByYear.set(year, []);
+  }
+});
+
+// Get sorted years (newest first)
+const years = Array.from(postsByYear.keys()).sort((a, b) => b - a);
+---
+
+<Layout title="Home">
+  <style is:global>
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 80vh;
+    }
+  </style>
+
+  <div style={{ marginBottom: '3rem' }}>
+    <h1 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>~ [username]</h1>
+    <p style={{ color: 'var(--muted)' }}>email@example.com</p>
+  </div>
+
+  <div style={{ marginBottom: '3rem' }}>
+    <h2 style={{ fontSize: '1rem', marginBottom: '1.5rem', fontWeight: 'normal' }}>blogs</h2>
+    <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+      {years.map(year => (
+        <a key={year} href={`/blog/${year}`} style={{ textDecoration: 'none' }}>
+          <YearBadge year={year} />
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <div>
+    <h2 style={{ fontSize: '1rem', marginBottom: '1.5rem', fontWeight: 'normal' }}>links</h2>
+    <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center' }}>
+      <a href="/about">about →</a>
+      <a href="/">favorites →</a>
+      <a href="/">research →</a>
+    </div>
+  </div>
+</Layout>
