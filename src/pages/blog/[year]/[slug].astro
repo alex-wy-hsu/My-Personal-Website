@@ -1,0 +1,83 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  
+  return allPosts.map(post => {
+    const year = new Date(post.data.date).getFullYear();
+    return {
+      params: { year: String(year), slug: post.slug },
+      props: { post },
+    };
+  });
+}
+
+const { year } = Astro.params;
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title}>
+  <article>
+    <h1>{post.data.title}</h1>
+    <time datetime={post.data.date}>{post.data.date}</time>
+    
+    {post.data.tags && (
+      <div class="tags">
+        {post.data.tags.map(tag => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+    )}
+    
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+  
+  <a href={`/blog/${year}`}>← Back to {year}</a>
+</Layout>
+
+<style>
+  article {
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  time {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .tags {
+    margin: 1rem 0;
+  }
+
+  .tag {
+    display: inline-block;
+    background: #f0f0f0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    margin-right: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .content {
+    margin-top: 2rem;
+    line-height: 1.8;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>

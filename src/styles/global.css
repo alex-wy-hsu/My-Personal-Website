@@ -1,0 +1,71 @@
+/* Global CSS Variables and Styling */
+
+:root {
+  /* Neutral colors */
+  --bg: #fafafa;
+  --text: #333;
+  --muted: #666;
+  --border: #ddd;
+  
+  /* Year accent colors (low saturation) */
+  --accent-2025: #7a8a9d;  /* Muted blue-gray */
+  --accent-2024: #8a7a9d;  /* Muted purple-gray */
+  --accent-2023: #9d9a7a;  /* Muted olive-gray */
+  --accent-2022: #9d8a7a;  /* Muted brown-gray */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--text);
+  transition: opacity 0.2s;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+code {
+  background: var(--border);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--border);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}

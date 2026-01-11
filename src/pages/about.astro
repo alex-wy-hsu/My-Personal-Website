@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Terminal from '../components/Terminal.astro';
+import { aboutData } from '../data/about';
+---
+
+<Layout title="About">
+  <h1>About Me</h1>
+  <Terminal data={aboutData} />
+  <p style="margin-top: 2rem;"><a href="/">← Home</a></p>
+</Layout>

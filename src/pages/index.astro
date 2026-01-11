@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import YearBadge from '../components/YearBadge.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+
+// Group posts by year
+const postsByYear = allPosts.reduce((acc, post) => {
+  const year = new Date(post.data.date).getFullYear();
+  if (!acc[year]) acc[year] = [];
+  acc[year].push(post);
+  return acc;
+}, {} as Record<number, typeof allPosts>);
+
+// Sort years descending
+const years = Object.keys(postsByYear)
+  .map(Number)
+  .sort((a, b) => b - a);
+---
+
+<Layout title="Home">
+  <h1>My Blog</h1>
+  
+  <section class="years-index">
+    <h2>Posts by Year</h2>
+    <div class="years-grid">
+      {years.map(year => (
+        <a href={`/blog/${year}`} class="year-link">
+          <YearBadge year={year} />
+          <p class="post-count">{postsByYear[year].length} posts</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .years-index {
+    margin-top: 2rem;
+  }
+
+  .years-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .year-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    transition: transform 0.2s;
+  }
+
+  .year-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .post-count {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+</style>
