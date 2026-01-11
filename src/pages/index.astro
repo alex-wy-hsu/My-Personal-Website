@@ -5,22 +5,13 @@ import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog');
 
-// Group posts by year and sort
+// Get unique years from posts
 const postsByYear = new Map<number, typeof allPosts>();
-
 allPosts.forEach(post => {
   const year = parseInt(post.data.date.split('-')[0]);
   if (!postsByYear.has(year)) {
     postsByYear.set(year, []);
   }
-  postsByYear.get(year)!.push(post);
-});
-
-// Sort posts within each year by date (newest first)
-postsByYear.forEach(posts => {
-  posts.sort((a, b) => {
-    return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
-  });
 });
 
 // Get sorted years (newest first)
@@ -28,26 +19,39 @@ const years = Array.from(postsByYear.keys()).sort((a, b) => b - a);
 ---
 
 <Layout title="Home">
-  <h1>Welcome to My Personal Website</h1>
-  <p>This is a minimal, Jake-like personal website built with Astro.</p>
-  
-  <h2>Blog Posts by Year</h2>
-  {years.length > 0 ? (
-    <div>
+  <style is:global>
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 80vh;
+    }
+  </style>
+
+  <div style={{ marginBottom: '3rem' }}>
+    <h1 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>~ [username]</h1>
+    <p style={{ color: 'var(--muted)' }}>email@example.com</p>
+  </div>
+
+  <div style={{ marginBottom: '3rem' }}>
+    <h2 style={{ fontSize: '1rem', marginBottom: '1.5rem', fontWeight: 'normal' }}>blogs</h2>
+    <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
       {years.map(year => (
-        <div key={year} style={{ marginBottom: '2rem' }}>
+        <a key={year} href={`/blog/${year}`} style={{ textDecoration: 'none' }}>
           <YearBadge year={year} />
-          <ul style={{ marginTop: '0.5rem' }}>
-            {postsByYear.get(year)?.map(post => (
-              <li key={post.id}>
-                <a href={`/blog/${year}/${post.slug}`}>{post.data.title}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
+        </a>
       ))}
     </div>
-  ) : (
-    <p>No blog posts yet.</p>
-  )}
+  </div>
+
+  <div>
+    <h2 style={{ fontSize: '1rem', marginBottom: '1.5rem', fontWeight: 'normal' }}>links</h2>
+    <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center' }}>
+      <a href="/about">about →</a>
+      <a href="/">favorites →</a>
+      <a href="/">research →</a>
+    </div>
+  </div>
 </Layout>

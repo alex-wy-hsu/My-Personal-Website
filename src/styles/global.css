@@ -1,17 +1,17 @@
 /* Global CSS Variables and Styling */
 
 :root {
-  /* Neutral colors */
-  --bg: #fafafa;
-  --text: #333333;
-  --muted: #666666;
-  --border: #e5e5e5;
+  /* Neutral colors - Dark mode */
+  --bg: #0a0a0a;
+  --text: #e0e0e0;
+  --muted: #a0a0a0;
+  --border: #2a2a2a;
   
-  /* Year accent colors (low saturation) */
-  --accent-2025: #7a6b7d;  /* Muted purple */
-  --accent-2024: #6b7a7d;  /* Muted blue-gray */
-  --accent-2023: #7a7d6b;  /* Muted olive */
-  --accent-2022: #7d7a6b;  /* Muted brown */
+  /* Year accent colors (low saturation, adapted for dark mode) */
+  --accent-2025: #8a9a9d;  /* Muted blue-gray */
+  --accent-2024: #8a8d9a;  /* Muted purple-gray */
+  --accent-2023: #9a9a8a;  /* Muted olive-gray */
+  --accent-2022: #9d9a8a;  /* Muted brown-gray */
 }
 
 * {
@@ -40,31 +40,6 @@ h1 {
 h2 {
   margin-top: 2rem;
   margin-bottom: 1rem;
-}
-
-nav {
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 2rem;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-nav a {
-  text-decoration: none;
-  color: var(--muted);
-  transition: color 0.2s;
-}
-
-nav a:hover {
-  color: var(--text);
 }
 
 a {
