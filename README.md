@@ -21,26 +21,28 @@ Edit `js/data.js` for your info and projects.
 
 Below are quick snapshots (textual + links) of the current pages on this branch. Each page's image snapshot is embedded directly under its description.
 
-- Home: [index.html](index.html)
-  - Snapshot: large centered hero with name/title, short tagline, navigation links to About / Projects. Minimal, Jake-style spacing and monospace heading.
+- Branch name: `001-Plan.md-by-ChatGPT5.2-implement-by-GPT4.1`
 
-  Home snapshot:
+  - Home: [index.html](index.html)
+    - Snapshot: large centered hero with name/title, short tagline, navigation links to About / Projects. Minimal, Jake-style spacing and monospace heading.
 
-  ![Home snapshot](assets/images/snapshot-index.png)
+    - Home snapshot:
 
-- About: [about.html](about.html)
-  - Snapshot: Jake-style page wrapper containing a Justin-inspired terminal block: mock macOS header dots, a prompt line (`> {name}`) with blinking cursor, command-like lines for location, contact, resume, interests, education, and skills.
+      ![Home snapshot](assets/images/snapshot-index.png)
 
-  About snapshot:
+  - About: [about.html](about.html)
+    - Snapshot: Jake-style page wrapper containing a Justin-inspired terminal block: mock macOS header dots, a prompt line (`> {name}`) with blinking cursor, command-like lines for location, contact, resume, interests, education, and skills.
 
-  ![About snapshot](assets/images/snapshot-about.png)
+    - About snapshot:
 
-- Projects: [projects.html](projects.html)
-  - Snapshot: Vertical list of project cards. Each card is a thin-outlined rectangle with a left image area (20% width) and a right content area (80% width) containing title, 2–5 line description, and rectangular tech tags below.
+      ![About snapshot](assets/images/snapshot-about.png)
 
-  Projects snapshot:
+  - Projects: [projects.html](projects.html)
+    - Snapshot: Vertical list of project cards. Each card is a thin-outlined rectangle with a left image area (20% width) and a right content area (80% width) containing title, 2–5 line description, and rectangular tech tags below.
 
-  ![Projects snapshot](assets/images/snapshot-projects.png)
+    - Projects snapshot:
+
+      ![Projects snapshot](assets/images/snapshot-projects.png)
 
 ## Branch Summary
 
