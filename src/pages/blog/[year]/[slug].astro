@@ -1,18 +1,48 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import { getCollection, getEntryBySlug } from 'astro:content';
+
+const allPosts = await getCollection('blog');
 
 export async function getStaticPaths() {
-  return [
-    { params: { year: '2025', slug: 'first-post' } },
-    { params: { year: '2024', slug: 'second-post' } },
-  ];
+  const posts = await getCollection('blog');
+  
+  return posts.map(post => {
+    const year = parseInt(post.data.date.split('-')[0]);
+    return {
+      params: { year: year.toString(), slug: post.slug },
+      props: { post },
+    };
+  });
 }
 
 const { year, slug } = Astro.params;
+const post = await getEntryBySlug('blog', slug!);
+
+if (!post) {
+  return new Response('Not found', { status: 404 });
+}
+
+const { Content } = await post.render();
 ---
 
-<Layout title={`Blog - ${year} - ${slug}`}>
-  <h1>{slug}</h1>
-  <p>Year: {year}</p>
-  <p>This is a blog post placeholder.</p>
+<Layout title={post.data.title}>
+  <article>
+    <h1>{post.data.title}</h1>
+    <p>
+      <time>{post.data.date}</time>
+      {post.data.tags && post.data.tags.length > 0 && (
+        <span> • Tags: {post.data.tags.join(', ')}</span>
+      )}
+    </p>
+    {post.data.description && <p><em>{post.data.description}</em></p>}
+    
+    <div>
+      <Content />
+    </div>
+    
+    <p>
+      <a href={`/blog/${year}`}>← Back to {year}</a>
+    </p>
+  </article>
 </Layout>

@@ -1,9 +1,45 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+
+// Group posts by year and sort
+const postsByYear = new Map<number, typeof allPosts>();
+
+allPosts.forEach(post => {
+  const year = parseInt(post.data.date.split('-')[0]);
+  if (!postsByYear.has(year)) {
+    postsByYear.set(year, []);
+  }
+  postsByYear.get(year)!.push(post);
+});
+
+// Sort posts within each year by date (newest first)
+postsByYear.forEach(posts => {
+  posts.sort((a, b) => {
+    return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+  });
+});
+
+// Get sorted years (newest first)
+const years = Array.from(postsByYear.keys()).sort((a, b) => b - a);
 ---
 
 <Layout title="Home">
   <h1>Welcome to My Personal Website</h1>
   <p>This is a minimal, Jake-like personal website built with Astro.</p>
-  <p>Blog posts will be organized by year.</p>
+  
+  <h2>Blog Posts by Year</h2>
+  {years.length > 0 ? (
+    <ul>
+      {years.map(year => (
+        <li key={year}>
+          <a href={`/blog/${year}`}>{year}</a> ({postsByYear.get(year)?.length} posts)
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p>No blog posts yet.</p>
+  )}
 </Layout>
