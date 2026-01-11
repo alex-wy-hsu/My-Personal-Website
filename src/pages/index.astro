@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import YearBadge from '../components/YearBadge.astro';
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog');
@@ -32,13 +33,20 @@ const years = Array.from(postsByYear.keys()).sort((a, b) => b - a);
   
   <h2>Blog Posts by Year</h2>
   {years.length > 0 ? (
-    <ul>
+    <div>
       {years.map(year => (
-        <li key={year}>
-          <a href={`/blog/${year}`}>{year}</a> ({postsByYear.get(year)?.length} posts)
-        </li>
+        <div key={year} style={{ marginBottom: '2rem' }}>
+          <YearBadge year={year} />
+          <ul style={{ marginTop: '0.5rem' }}>
+            {postsByYear.get(year)?.map(post => (
+              <li key={post.id}>
+                <a href={`/blog/${year}/${post.slug}`}>{post.data.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
       ))}
-    </ul>
+    </div>
   ) : (
     <p>No blog posts yet.</p>
   )}
