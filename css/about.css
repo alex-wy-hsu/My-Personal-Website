@@ -1,0 +1,43 @@
+.terminal-wrapper {
+  background: #111119;
+  border: 1px solid #333;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.2);
+}
+.terminal-header {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+#terminal-content {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: #e0e0e0;
+}
+.prompt {
+  color: #39ff14;
+  font-weight: bold;
+}
+.cursor {
+  display: inline-block;
+  width: 1ch;
+  background: #39ff14;
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
