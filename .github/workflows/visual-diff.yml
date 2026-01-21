@@ -1,0 +1,32 @@
+name: Visual Diff
+
+on:
+  pull_request:
+    paths:
+      - 'frontend/**'
+      - 'tests/visual/**'
+
+jobs:
+  visual-diff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install deps
+        run: |
+          npm ci --prefer-offline || true
+          npm i puppeteer --no-audit --no-fund
+      - name: Start simple http server
+        run: |
+          npm i -g http-server
+          npx http-server frontend/src -p 3000 > server.log 2>&1 &
+      - name: Capture baseline
+        run: node tests/visual/capture.js http://localhost:3000 ${GITHUB_WORKSPACE}/artifacts/actual_home.png
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-actual
+          path: artifacts/actual_home.png

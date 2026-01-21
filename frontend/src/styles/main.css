@@ -1,0 +1,14 @@
+:root{
+  --bg: #0f1720;
+  --fg: #e6eef8;
+  --accent: #7dd3fc;
+  --max-width: 1100px;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:Inter,Segoe UI,Arial;margin:0}
+header{padding:16px;background:rgba(255,255,255,0.02)}
+main{max-width:var(--max-width);margin:24px auto;padding:0 16px}
+#hero{padding:24px 0}
+
+/* layout helper */
+.row{display:flex;gap:16px}
