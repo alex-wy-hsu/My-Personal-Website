@@ -1,0 +1,26 @@
+[
+  {
+    "id": "alpha",
+    "title": "Project Alpha",
+    "slug": "project-alpha",
+    "shortDescription": "Revolutionary visual exploration tool",
+    "tags": ["React", "Canvas"],
+    "link": "#"
+  },
+  {
+    "id": "beta",
+    "title": "Data Dashboard",
+    "slug": "data-dashboard",
+    "shortDescription": "Real-time analytics platform",
+    "tags": ["Vue.js", "D3.js"],
+    "link": "#"
+  },
+  {
+    "id": "gamma",
+    "title": "Mobile App",
+    "slug": "mobile-app",
+    "shortDescription": "Cross-platform productivity suite",
+    "tags": ["React Native", "Firebase"],
+    "link": "#"
+  }
+]

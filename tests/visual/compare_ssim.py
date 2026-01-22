@@ -15,8 +15,12 @@ def compare(a,b):
         return 0.0
     if ia.ndim == 3 and ia.shape[2] == 4:
         ia = ia[:,:,:3]
+    if ib.ndim == 3 and ib.shape[2] == 4:
         ib = ib[:,:,:3]
-    score = ssim(ia, ib, multichannel=True)
+    if ia.ndim == 3 and ia.shape[2] == 3:
+        score = ssim(ia, ib, channel_axis=2, win_size=7, data_range=1.0)
+    else:
+        score = ssim(ia, ib, win_size=7, data_range=1.0)
     return score
 
 def main():

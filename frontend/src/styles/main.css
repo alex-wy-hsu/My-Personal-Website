@@ -12,3 +12,14 @@ main{max-width:var(--max-width);margin:24px auto;padding:0 16px}
 
 /* layout helper */
 .row{display:flex;gap:16px}
+
+/* responsive */
+@media (max-width:768px){
+  main{margin:16px auto}
+  #hero{padding:16px 0}
+  header nav{display:flex;flex-direction:column;gap:8px}
+}
+@media (max-width:480px){
+  body{font-size:0.9em}
+  main{padding:0 12px}
+}

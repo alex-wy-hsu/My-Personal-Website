@@ -18,7 +18,7 @@
     "url": "https://github.com/alex-wy-hsu/My-Personal-Website/issues"
   },
   "homepage": "https://github.com/alex-wy-hsu/My-Personal-Website#readme",
-  "dependencies": {
+  "devDependencies": {
     "puppeteer": "^24.35.0"
   }
 }

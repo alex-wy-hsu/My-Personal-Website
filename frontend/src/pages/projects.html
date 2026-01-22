@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/projects.css">
+  </head>
+  <body>
+    <header id="site-header">
+      <nav>
+        <a href="/">Home</a>
+        <a href="/projects.html">Projects</a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <h1>Projects</h1>
+      <div id="projects-grid"></div>
+    </main>
+
+    <footer>
+      <small>Dev build</small>
+    </footer>
+
+    <script src="../components/ProjectCard.js"></script>
+    <script>
+      async function renderProjects(){
+        const res = await fetch('../data/projects.json');
+        const projects = await res.json();
+        const grid = document.getElementById('projects-grid');
+        grid.style.display = 'grid';
+        grid.style.gap = '16px';
+        grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
+        projects.forEach(p=>{
+          const card = createProjectCard(p);
+          if(p.tags){
+            const tagsDiv = document.createElement('div');
+            tagsDiv.className = 'tags';
+            p.tags.forEach(tag=>{
+              const span = document.createElement('span');
+              span.className = 'project-tag';
+              span.textContent = tag;
+              tagsDiv.appendChild(span);
+            });
+            card.appendChild(tagsDiv);
+          }
+          grid.appendChild(card);
+        });
+      }
+      document.addEventListener('DOMContentLoaded', renderProjects);
+    </script>
+  </body>
+</html>
