@@ -3,52 +3,60 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Projects</title>
+    <title>Projects - Portfolio</title>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/projects.css">
   </head>
   <body>
-    <header id="site-header">
-      <nav>
-        <a href="/">Home</a>
-        <a href="/projects.html">Projects</a>
-      </nav>
+    <header>
+      <div class="container">
+        <nav>
+          <a href="/" class="logo">Portfolio</a>
+          <a href="/">Home</a>
+          <a href="/pages/projects.html">Projects</a>
+          <a href="#">Blog</a>
+          <a href="#">Contact</a>
+        </nav>
+      </div>
     </header>
 
-    <main id="main-content">
-      <h1>Projects</h1>
-      <div id="projects-grid"></div>
+    <main>
+      <div class="container">
+        <div class="page-header">
+          <h1>My Projects</h1>
+          <p>A collection of my recent work and side projects. Click any card to learn more.</p>
+        </div>
+        
+        <div class="projects-grid" id="projects-grid">
+          <!-- Projects loaded dynamically -->
+        </div>
+      </div>
     </main>
 
     <footer>
-      <small>Dev build</small>
+      <div class="container">
+        <p>&copy; 2026 My Portfolio. Built with passion.</p>
+      </div>
     </footer>
 
-    <script src="../components/ProjectCard.js"></script>
-    <script>
-      async function renderProjects(){
-        const res = await fetch('../data/projects.json');
-        const projects = await res.json();
-        const grid = document.getElementById('projects-grid');
-        grid.style.display = 'grid';
-        grid.style.gap = '16px';
-        grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
-        projects.forEach(p=>{
-          const card = createProjectCard(p);
-          if(p.tags){
-            const tagsDiv = document.createElement('div');
-            tagsDiv.className = 'tags';
-            p.tags.forEach(tag=>{
-              const span = document.createElement('span');
-              span.className = 'project-tag';
-              span.textContent = tag;
-              tagsDiv.appendChild(span);
-            });
-            card.appendChild(tagsDiv);
-          }
-          grid.appendChild(card);
-        });
+    <script type="module">
+      import { createProjectCard } from '../components/ProjectCard.js';
+      
+      async function renderProjects() {
+        try {
+          const res = await fetch('../data/projects.json');
+          const projects = await res.json();
+          const grid = document.getElementById('projects-grid');
+          
+          projects.forEach(p => {
+            const card = createProjectCard(p);
+            grid.appendChild(card);
+          });
+        } catch (e) {
+          console.error('Failed to load projects:', e);
+        }
       }
+      
       document.addEventListener('DOMContentLoaded', renderProjects);
     </script>
   </body>

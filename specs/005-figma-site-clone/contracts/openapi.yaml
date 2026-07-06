@@ -1,0 +1,134 @@
+openapi: 3.0.3
+info:
+  title: Figma 個人作品集網站（靜態）
+  version: 1.0.0
+  description: |-
+    靜態網站路由與資料檔案的契約描述。無後端 API，僅描述可存取的頁面與 JSON 資料。
+servers:
+  - url: http://127.0.0.1:3000
+paths:
+  /:
+    get:
+      summary: 首頁
+      responses:
+        "200":
+          description: HTML 首頁
+          content:
+            text/html:
+              schema:
+                type: string
+  /projects:
+    get:
+      summary: 專案頁（路由別名）
+      responses:
+        "200":
+          description: HTML 專案頁
+          content:
+            text/html:
+              schema:
+                type: string
+  /blog:
+    get:
+      summary: 部落格頁（路由別名）
+      responses:
+        "200":
+          description: HTML 部落格頁
+          content:
+            text/html:
+              schema:
+                type: string
+  /pages/projects.html:
+    get:
+      summary: 專案頁（實體檔案）
+      responses:
+        "200":
+          description: HTML 專案頁
+          content:
+            text/html:
+              schema:
+                type: string
+  /pages/blog.html:
+    get:
+      summary: 部落格頁（實體檔案）
+      responses:
+        "200":
+          description: HTML 部落格頁
+          content:
+            text/html:
+              schema:
+                type: string
+  /data/projects.json:
+    get:
+      summary: 專案資料
+      responses:
+        "200":
+          description: 專案清單
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Project"
+  /data/posts.json:
+    get:
+      summary: 部落格資料
+      responses:
+        "200":
+          description: 部落格清單
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BlogPost"
+components:
+  schemas:
+    Project:
+      type: object
+      required: [id, title, year, description, tags]
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        year:
+          type: integer
+          minimum: 2022
+          maximum: 2024
+        description:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        demoUrl:
+          type: string
+          format: uri
+          nullable: true
+        githubUrl:
+          type: string
+          format: uri
+          nullable: true
+    BlogPost:
+      type: object
+      required: [id, title, summary, year]
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        summary:
+          type: string
+        year:
+          type: integer
+    SocialLink:
+      type: object
+      required: [platform, url, icon]
+      properties:
+        platform:
+          type: string
+          enum: [GitHub, LinkedIn, Email]
+        url:
+          type: string
+        icon:
+          type: string

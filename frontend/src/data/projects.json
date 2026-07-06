@@ -2,25 +2,55 @@
   {
     "id": "alpha",
     "title": "Project Alpha",
-    "slug": "project-alpha",
-    "shortDescription": "Revolutionary visual exploration tool",
-    "tags": ["React", "Canvas"],
-    "link": "#"
+    "year": 2024,
+    "description": "Revolutionary visual exploration tool that transforms how users interact with complex datasets through intuitive canvas-based interfaces.",
+    "tags": ["React", "Canvas", "TypeScript"],
+    "demoUrl": "#",
+    "githubUrl": "#"
   },
   {
     "id": "beta",
-    "title": "Data Dashboard",
-    "slug": "data-dashboard",
-    "shortDescription": "Real-time analytics platform",
-    "tags": ["Vue.js", "D3.js"],
-    "link": "#"
+    "title": "Project Beta",
+    "year": 2024,
+    "description": "Real-time analytics platform providing actionable insights through beautiful data visualizations and interactive dashboards.",
+    "tags": ["Vue.js", "D3.js", "Node.js"],
+    "demoUrl": "#",
+    "githubUrl": "#"
   },
   {
     "id": "gamma",
-    "title": "Mobile App",
-    "slug": "mobile-app",
-    "shortDescription": "Cross-platform productivity suite",
-    "tags": ["React Native", "Firebase"],
-    "link": "#"
+    "title": "Project Gamma",
+    "year": 2023,
+    "description": "Cross-platform productivity suite designed to streamline workflows and boost team collaboration across devices.",
+    "tags": ["React Native", "Firebase", "Redux"],
+    "demoUrl": "#",
+    "githubUrl": "#"
+  },
+  {
+    "id": "delta",
+    "title": "Project Delta",
+    "year": 2023,
+    "description": "AI-powered content management system that automates content organization and enhances discoverability.",
+    "tags": ["Python", "TensorFlow", "FastAPI"],
+    "demoUrl": "#",
+    "githubUrl": "#"
+  },
+  {
+    "id": "epsilon",
+    "title": "Project Epsilon",
+    "year": 2022,
+    "description": "Secure authentication service with multi-factor support and seamless integration capabilities.",
+    "tags": ["Go", "PostgreSQL", "Docker"],
+    "demoUrl": "#",
+    "githubUrl": "#"
+  },
+  {
+    "id": "zeta",
+    "title": "Project Zeta",
+    "year": 2022,
+    "description": "Microservices architecture template with built-in observability, logging, and deployment automation.",
+    "tags": ["Kubernetes", "Terraform", "AWS"],
+    "demoUrl": "#",
+    "githubUrl": "#"
   }
 ]

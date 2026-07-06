@@ -1,0 +1,20 @@
+[
+  {
+    "id": "post-1",
+    "title": "Building Scalable Web Applications",
+    "summary": "Lessons learned from architecting systems that handle millions of requests.",
+    "year": 2024
+  },
+  {
+    "id": "post-2",
+    "title": "The Art of Clean Code",
+    "summary": "Why readability matters more than cleverness in software development.",
+    "year": 2023
+  },
+  {
+    "id": "post-3",
+    "title": "From Backend to Full Stack",
+    "summary": "My journey transitioning to full-stack development and what I learned along the way.",
+    "year": 2023
+  }
+]
