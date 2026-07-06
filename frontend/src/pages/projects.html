@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects - Portfolio</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/projects.css">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <a href="/" class="logo">Portfolio</a>
+          <a href="/">Home</a>
+          <a href="/pages/projects.html">Projects</a>
+          <a href="#">Blog</a>
+          <a href="#">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="page-header">
+          <h1>My Projects</h1>
+          <p>A collection of my recent work and side projects. Click any card to learn more.</p>
+        </div>
+        
+        <div class="projects-grid" id="projects-grid">
+          <!-- Projects loaded dynamically -->
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2026 My Portfolio. Built with passion.</p>
+      </div>
+    </footer>
+
+    <script type="module">
+      import { createProjectCard } from '../components/ProjectCard.js';
+      
+      async function renderProjects() {
+        try {
+          const res = await fetch('../data/projects.json');
+          const projects = await res.json();
+          const grid = document.getElementById('projects-grid');
+          
+          projects.forEach(p => {
+            const card = createProjectCard(p);
+            grid.appendChild(card);
+          });
+        } catch (e) {
+          console.error('Failed to load projects:', e);
+        }
+      }
+      
+      document.addEventListener('DOMContentLoaded', renderProjects);
+    </script>
+  </body>
+</html>
